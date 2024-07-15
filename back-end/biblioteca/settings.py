@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api_libros',
+    'users',
     'corsheaders',
 ]
 
@@ -143,3 +144,7 @@ CORS_ALLOW_ALL_ORIGINS = True  # Permitir solicitudes desde cualquier origen
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Reemplaza con la URL de tu frontend
 ]
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
