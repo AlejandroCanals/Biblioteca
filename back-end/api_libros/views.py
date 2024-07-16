@@ -9,7 +9,8 @@ from rest_framework.pagination import PageNumberPagination
 #Trae los datos (titulo,autor,imagen y fecha) haciendo una llamada a la api de google
 class LibroListView(APIView):
     def get(self, request, titulo):
-        url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{titulo}&fields=items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks/thumbnail,volumeInfo/publishedDate)"
+        max_results = 40
+        url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{titulo}&maxResults={max_results}&fields=items(volumeInfo/title,volumeInfo/authors,volumeInfo/imageLinks/thumbnail,volumeInfo/publishedDate)"
         response = requests.get(url)
 
         if response.status_code == 200:
