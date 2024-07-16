@@ -1,22 +1,24 @@
-
-import './App.css'
-import Searchbar1 from './components/Searchbar1';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import Container from './components/Container';
-
+import SearchPage from './pages/SearchPage';
+import RegisterPage from './pages/RegisterPage';
+import Header from './components/common/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginPage from './pages/LoginPage';
 
 function App() {
-
   return (
     <Router>
       <div className="App">
-        <Searchbar1/>
- 
-
+        <Header />
+        <Routes>
+          <Route path="/" element={<SearchPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

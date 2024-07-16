@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: black;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,7 +23,7 @@ a:hover {
 
 body {
   background-color: beige;
-  color: white; /* Cambiar el color del texto si es necesario para que sea legible */
+  color: rgb(0, 0, 0); /* Cambiar el color del texto si es necesario para que sea legible */
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif; /* Establecer la fuente de texto predeterminada */
@@ -36,6 +36,9 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+ul{
+  list-style-type: none;
 }
 
 button {
