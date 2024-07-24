@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-
+import { useNavigate } from 'react-router-dom'; 
+import { useAuth } from './AuthContext';
 const Login = () => {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const { login } = useAuth(); 
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -13,13 +16,17 @@ const Login = () => {
                 username,
                 password
             });
-            localStorage.setItem('token', response.data.csrf_token); // Guarda el token en localStorage
+            login(response.data.csrf_token); // Guarda el token en localStorage
             console.log('Inicio de sesión exitoso');
+        
             // Redirecciona o realiza otras acciones después del inicio de sesión
+            navigate('/');
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
         }
     };
+
+
 
     return (
         <Container className="mt-5">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { buscarLibro } from '../api'; // Importa la función de búsqueda desde api.js
+import { buscarLibro } from '../api'; 
 
 const SearchBar = ({ onSearchResults }) => {
   const [searchTerm, setSearchTerm] = useState('');

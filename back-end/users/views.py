@@ -40,3 +40,4 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({'message': 'Sesión cerrada exitosamente'})
+    
