@@ -4,10 +4,11 @@ from django.utils import timezone
 
 
 class Libro(models.Model):
-    titulo = models.CharField(max_length=100)
-    autor = models.CharField(max_length=100)
-    imagen_portada = models.URLField()
-    fecha_publicacion = models.CharField(max_length=50)
+    titulo = models.CharField(max_length=200)
+    autor = models.CharField(max_length=500)
+    imagen_portada = models.TextField() 
+    fecha_publicacion = models.CharField(max_length=2000)
+    google_id = models.CharField(max_length=100, unique=True, default='')  
 
 class Favorito(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -17,3 +18,4 @@ class Favorito(models.Model):
         unique_together = ('user', 'libro')
         verbose_name = 'Favorito'
         verbose_name_plural = 'Favoritos'
+

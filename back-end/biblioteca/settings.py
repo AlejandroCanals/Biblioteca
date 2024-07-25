@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api_libros',
-    'users',
+    'accounts',
     'corsheaders',
     'rest_framework_simplejwt',
 ]
@@ -164,7 +164,7 @@ REST_FRAMEWORK = {
 
 # Opcional: Configurar el tiempo de vida del token
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     # ... otras configuraciones ...
 }

@@ -5,7 +5,9 @@ class LibroSerializer(serializers.ModelSerializer):
     autor = serializers.ListField(child=serializers.CharField(), required=False)
     class Meta:
         model = Libro
-        fields = ['id', 'titulo', 'autor', 'imagen_portada', 'fecha_publicacion']
+        fields = ['id', 'titulo', 'autor', 'imagen_portada', 'fecha_publicacion','google_id']
+
+
 
 class FavoritoSerializer(serializers.ModelSerializer):
     libro = LibroSerializer()
