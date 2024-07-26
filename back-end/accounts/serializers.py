@@ -12,22 +12,28 @@ class RegisterSerializer(serializers.ModelSerializer):
             
         }
 
-    def save(self):
-        user = User(
-            username=self.validated_data['username']
-        )
-        password = self.validate_data['password']
-        password2= self.validate_data['password2']
-
-        if password != password2:
+    def validate(self, data):
+        """
+        Realiza la validación personalizada para asegurar que las contraseñas coincidan.
+        """
+        if data['password'] != data['password2']:
             raise serializers.ValidationError({'password': 'Las contraseñas no coinciden'})
-        
+        return data
 
-        user.set_password(password)
-        user.save()
+    def create(self, validated_data):
+        """
+        Crea y guarda una nueva instancia de usuario con la contraseña hasheada.
+        """
+        # Eliminamos password2 ya que no es necesario para la creación del usuario
+        password = validated_data.pop('password')
+        
+        user = User(
+            username=validated_data['username']
+        )
+        user.set_password(password)  # Establecemos la contraseña hasheada
+        user.save()  # Guardamos el usuario
 
         return user
-    
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

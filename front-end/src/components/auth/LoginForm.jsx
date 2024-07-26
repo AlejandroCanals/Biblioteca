@@ -1,30 +1,33 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; 
-import { useAuth } from './AuthContext';
-const Login = () => {
+import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const { login } = useAuth(); 
+const Login = () =>{
+
     const navigate = useNavigate();
+    const {login} = useContext(AuthContext);
+    const [username,setUsername] = useState('');
+    const [password,setPassword] = useState('');
+    const [message,setMessage] = useState('');
+    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/users/login/', {
-                username,
-                password
-            });
-            login(response.data.csrf_token); // Guarda el token en localStorage
-            console.log('Inicio de sesión exitoso');
+
+        try{
+            await login(username,password);
         
-            // Redirecciona o realiza otras acciones después del inicio de sesión
-            navigate('/');
-        } catch (error) {
-            console.error('Error al iniciar sesión:', error);
+            console.log('Has iniciado sesion correctamente')
+
+            navigate('/')
+
+        }catch (error) {
+            setMessage(error.message);
         }
-    };
+    }
+
 
 
 
@@ -54,6 +57,12 @@ const Login = () => {
                         <div className="d-grid gap-2">
                             <Button type="submit" variant="primary">Iniciar Sesión</Button>
                         </div>
+
+                        {message && (
+                            <div>
+                                <span>{message}</span>
+                            </div>
+                        )}
                     </Form>
                 </Col>
             </Row>

@@ -1,26 +1,43 @@
 // AuthContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import authService from './authService';
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+const AuthProvider = ({ children }) => {
+    const [currentUser, setCurrentUser] = useState(null);
 
-export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+    useEffect(() => {
+        // Verifica si el usuario está actualmente autenticado
+        const user = authService.getCurrentUser();
+        console.log('Current User:', user);
+        setCurrentUser(user);
+    }, []);
 
-    const login = (token) => {
-        localStorage.setItem('token', token);
-        setIsLoggedIn(true);
+    const login = async (username, password) => {
+        try {
+            const user = await authService.login(username, password);
+            setCurrentUser(user);
+            return user;
+        } catch (error) {
+            throw new Error('Error durante el inicio de sesión');
+        }
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        setIsLoggedIn(false);
+    const logout = async () => {
+        try {
+            await authService.logout();
+            setCurrentUser(null);
+        } catch (error) {
+            throw new Error('Error durante el cierre de sesión');
+        }
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+        <AuthContext.Provider value={{ currentUser, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
+
+export { AuthContext, AuthProvider };

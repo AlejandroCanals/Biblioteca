@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import authService from './authService';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
+    const [error, setError] = useState(''); 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (password1 !== password2) {
-            alert('Las contraseñas no coinciden');
-            return;
-        }
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/users/register/', {
-                username,
-                password1,
-                password2,
-            });
-            console.log(response.data);
-            console.log('Te has registrado con exito')
-        } catch (error) {
-            console.error('Error al registrar usuario:', error);
-        }
+        e.preventDefault(); //Evita la recarga del formulario
+
+        try{
+            await authService.register(username, password1, password2); // Usa authService para llamar al método register
+            console.log('Usuario registrado exitosamente');
+            navigate('/login')
+        } catch(error) {
+
+            console.error('Error durante el registro:', error);
+            setError('Error durante el registro. Por favor, inténtelo de nuevo.'); // Proporciona un mensaje de error más útil
+        };
     };
+
 
     return (
         <div className="container mt-5">
