@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { AuthContext } from './AuthContext';

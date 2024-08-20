@@ -11,8 +11,7 @@ const SearchBar = ({ onSearchResults }) => {
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      const maxResults = 2
-      const data = await buscarLibro(searchTerm,maxResults); // Utiliza la función de búsqueda de api.js
+      const data = await buscarLibro(searchTerm); // Utiliza la función de búsqueda de api.js
       onSearchResults(data); // Pasar los resultados al componente padre
     } catch (error) {
       console.error('Error al buscar libros:', error);

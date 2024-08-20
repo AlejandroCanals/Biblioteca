@@ -6,12 +6,15 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    
 
     useEffect(() => {
-        // Verifica si el usuario está actualmente autenticado
-        const user = authService.getCurrentUser();
-        console.log('Current User:', user);
-        setCurrentUser(user);
+        const fetchCurrentUser = async () => {
+            const user = await authService.getCurrentUser();
+            console.log('Current User:', user);
+            setCurrentUser(user);
+        };
+        fetchCurrentUser();
     }, []);
 
     const login = async (username, password) => {
@@ -34,6 +37,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
+        
         <AuthContext.Provider value={{ currentUser, login, logout }}>
             {children}
         </AuthContext.Provider>

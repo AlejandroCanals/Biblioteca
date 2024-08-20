@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/common/Header';
 import LoginPage from './pages/LoginPage';
 import { AuthProvider } from './components/auth/AuthContext';
+import FavoritePage from './pages/FavoritePage';
 
 function App() {
 
@@ -17,9 +18,10 @@ function App() {
         <Routes>
           
           <Route path="/" element={<SearchPage />} />
-
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/favorite" element={<FavoritePage />} />
+
 
         </Routes>
       </div>

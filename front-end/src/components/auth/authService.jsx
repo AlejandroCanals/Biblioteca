@@ -11,12 +11,12 @@ const register = async (username, password, password2) => {
             password,
             password2,
         });
-    
-    } catch (error) {
-        console.error('Error during registration:', error);
-        throw error;
-    }
-    return response.data;
+        return response.data;
+
+        }catch (error) {
+            console.error('Error during registration:', error);
+            throw error;
+        }
 };
 
 const login = async (username, password) => {
@@ -49,9 +49,9 @@ const logout = async () => {
     }
 };
 
-const getCurrentUser = () => {
+const getCurrentUser =  () => {
     try {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user =  JSON.parse(localStorage.getItem('user'));
         return user; // Devuelve los datos del usuario, no solo el token
     } catch (error) {
         console.error('Error retrieving user from localStorage:', error);

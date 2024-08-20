@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
+import libros from "../../assets/libros.png";
 
 const Header = () => {
-  const navigate = useNavigate();
   const { currentUser, logout } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -16,26 +17,37 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    if (currentUser) {
+      setUsername(currentUser.username);
+    }
+  }, [currentUser]);
+
   return (
     <Navbar expand="lg" className="mb-4" style={{ backgroundColor: "#4aa6ed" }}>
       <Navbar.Brand
         href="#"
         className="ml-2 text-black"
-        style={{ marginLeft: "2rem" }}
+        style={{ marginLeft: "2rem" , fontSize:"25px"}}
       >
-        App de Libros
+        <img
+          src={libros} // Ruta a la imagen
+          alt="libros"
+          style={{ width: "40px", height: "40px",}} // Estilo opcional
+        />
+         Biblioteca
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" style={{ marginRight: "4rem" }}>
+      <Navbar.Collapse id="basic-navbar-nav" style={{ marginRight: "1rem" }}>
         <Nav className="mx-auto ">
           <Nav.Link
             href="/"
             className="text-black "
-            style={{ marginRight: "1rem" }}
+            style={{ marginLeft: "5rem" }}
           >
             Buscar Libro
           </Nav.Link>
-          <Nav.Link as={Link} to="/" className="text-black">
+          <Nav.Link as={Link} to="/favorite" className="text-black">
             Favoritos
           </Nav.Link>
         </Nav>
@@ -62,13 +74,15 @@ const Header = () => {
           ) : (
             // Mostrar botón de logout solo si el usuario está autenticado
             <>
-              <span className="text-black" style={{ marginRight: "2rem" }}>
-                Bienvenido, {currentUser.username}
-                {/* Muestra el nombre de usuario */}
-              </span>
-              <button onClick={handleLogout} className="btn btn-danger">
-                Cerrar Sesión
-              </button>
+              <div>
+                <span className="text-black" style={{ marginRight: "2rem" }}>
+                  Bienvenido, {username}
+                  {/* Muestra el nombre de usuario */}
+                </span>
+                <button onClick={handleLogout} className="btn btn-danger">
+                  Cerrar Sesión
+                </button>
+              </div>
             </>
           )}
         </Nav>

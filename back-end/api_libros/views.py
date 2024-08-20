@@ -107,18 +107,15 @@ class FavoritoListView(APIView):
         """Mediante la id de google del libro , hacemos una consulta a nuestro modelo libro de la base de datos, si lo encuentra,
             realiza otra consulta al modelo favoritos pasando la informacion del libro y el usuario que pide la eliminacion del libro"""
         
-        google_id = request.data.get('google_id')
-        if not google_id:
-            return Response({"error": "Se requiere el ID de Google del libro"}, status=status.HTTP_400_BAD_REQUEST)
+        id = request.data.get('id')
 
-        try:
-            libro = Libro.objects.get(google_id=google_id)
-        except Libro.DoesNotExist:
-            return Response({"error": "Libro no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+        if not id :
+            return Response({"error": "Se requieren el libro_id y el user_id"},status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            favorito = Favorito.objects.get(user=request.user, libro=libro)
+            favorito = Favorito.objects.get(id =id)
             favorito.delete()
-            return Response({"message": "El libro se ha eliminado de favoritos"},status=status.HTTP_204_NO_CONTENT)
+            return Response({"message": "Se ha eliminado el libro correctamente"},status=status.HTTP_204_NO_CONTENT)
         except Favorito.DoesNotExist:
-            return Response({"error": "El libro no está en favoritos"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({{"error": "El libro no esta en favortios"}}, status=status.HTTP_404_NOT_FOUND)
+        

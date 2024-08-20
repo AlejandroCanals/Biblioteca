@@ -26,7 +26,7 @@ body {
   color: rgb(0, 0, 0); /* Cambiar el color del texto si es necesario para que sea legible */
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif; /* Establecer la fuente de texto predeterminada */
+  font-family: Georgia, 'Times New Roman', Times, serif; /* Establecer la fuente de texto predeterminada */
   width: 100vw; /* Ancho completo de la ventana del navegador */
   height: 100vh; /* Altura completa de la ventana del navegador */
   overflow-x: hidden; /* Ocultar la barra de desplazamiento horizontal si es necesario */

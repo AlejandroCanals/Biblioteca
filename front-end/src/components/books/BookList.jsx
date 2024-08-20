@@ -1,5 +1,5 @@
 import React from 'react';
-import Book from './Book'; // Importa el componente Book
+import Book from './Book'; 
 
 const BookList = ({ books }) => {
   return (
@@ -11,7 +11,7 @@ const BookList = ({ books }) => {
       <div className="row">
         {books.map(book => (
           <div key={book.id} className="col-md-4 mb-4">
-            <Book book={book} />
+            <Book book={book}  />
           </div>
         ))}
       </div>
