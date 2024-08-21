@@ -1,0 +1,42 @@
+# Django migrations
+**/migrations/**/ 
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Environment variables
+.env
+
+# Django static and media files
+/static/
+/media/
+
+# Django logs
+*.log
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual environments
+myenv
+
+# Database files
+*.sqlite3
+
+
+# Windows files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Visual Studio Code
+.vscode/

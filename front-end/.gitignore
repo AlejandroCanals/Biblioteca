@@ -1,24 +1,80 @@
-# Logs
-logs
+# Node modules
+node_modules/
+
+# Build output
+dist/
+*.tgz
+
+# Vite cache
+.vite/
+vite.config.ts
+vite.config.js
+
+# Log files
 *.log
-npm-debug.log*
+
+# Environment variables
+.env
+.env.*.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE/editor directories
+.vscode/
+.idea/
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Coverage reports
+coverage/
+
+# Yarn & npm logs
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+npm-debug.log*
+package-lock.json
+yarn.lock
 
-node_modules
-dist
-dist-ssr
+# Local development environment
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Jest
+jest.config.js
+jest.config.ts
+
+# TypeScript
+*.tsbuildinfo
+
+# VSCode settings
+.settings/
+*.code-workspace
+
+# Next.js build artifacts (if applicable)
+.next/
+
+# Build directories
+build/
+out/
+
+# Sentry configuration (if using Sentry)
+.sentry/
+
+# Other environment configurations
+*.env.local
+
+# Ignore generated types (if using GraphQL codegen or similar tools)
+generated/
+
+# Python artifacts (if using a Python backend)
+*.pyc
+__pycache__/
+*.pyo
+
+# MacOS specific files
+.AppleDouble
+.LSOverride

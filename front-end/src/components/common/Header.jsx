@@ -46,7 +46,7 @@ const Header = () => {
             style={{ marginLeft: "5rem" }}
           >
             Buscar Libro
-          </Nav.Link>
+          </Nav.Link> 
           <Nav.Link as={Link} to="/favorite" className="text-black">
             Favoritos
           </Nav.Link>
