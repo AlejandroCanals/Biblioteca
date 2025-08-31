@@ -1,34 +1,33 @@
-# React + Vite
+# 📚 Book Library Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **basic web application** that works as a personal **book library**.  
+It fetches data from the **Google Books API** and allows users to:
 
-Currently, two official plugins are available:
+- 🔍 Search books through the API.  
+- 📥 Add selected books to their personal library.  
+- ⭐ Mark or unmark books as favorites.  
+- 🗑️ Remove books from the library.  
+- 🔑 Use basic authentication to manage user access.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app is split into two main folders: **front-end** and **back-end**.
+
+## 🎥 Demo
+
+👉 [Watch the demo video here](https://www.linkedin.com/feed/update/urn:li:activity:7231616935044497409)
+
+---
+
+## 🚀 Run locally
 
 
+```bash
+# Back-end (Django API)
+cd back-end
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver  # http://localhost:8000
 
-/src
-│
-├── /components
-│   ├── /common
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   └── ...
-│   ├── /auth
-│   │   ├── LoginForm.jsx
-│   │   ├── RegisterForm.jsx
-│   │   └── ...
-│   ├── /books
-│   │   ├── SearchBar.jsx
-│   │   ├── BookList.jsx
-│   │   ├── BookDetail.jsx
-│   │   └── ...
-│   ├── /favorites
-│   │   ├── Favorites.jsx
-│   │   └── FavoriteBook.jsx
-│   └── /shared
-│       ├── Button.jsx
-│       ├── Input.jsx
-│       └── ...
+# Front-end (React + Vite)
+cd front-end
+npm install
+npm run dev  # http://localhost:5173
